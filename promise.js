@@ -13,17 +13,16 @@ async function readFile(fileName) {
             if (err) {
                 return reject(err);
             };
-            console.log('read data:', );
-            console.log(data.toString());   
+            // console.log('read data:', );
+            // console.log(data.toString());   
             resolve(data);
         });        
     })
 }
 
 async function main() {
-    for (const fileName of fileNames) {
-        await readFile(fileName);
-    }
+    const results = await Promise.all([readFile(fileNames[0]), readFile(fileNames[1])]);
+    console.log(results);
 }
 
 main().then();
